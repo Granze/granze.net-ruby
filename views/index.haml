@@ -1,0 +1,73 @@
+%p.intro
+  I love climbing but, unfortunately, this doesn't help me bring home the bacon.
+  %br
+  For this reason, I spend most of my time working as software engineer.
+%section#main.grid.grid-pad
+  .col-1-2
+    %header.hgroup
+      %h2
+        Twitter
+      %h3
+        my tweets
+        %span.btn-twitter
+          %a.twitter-follow-button(href="https://twitter.com/granze" data-show-count="false" data-lang="en" data-size="large")
+            Follow @granze
+          :javascript
+            !function (d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (!d.getElementById(id)) {
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//platform.twitter.com/widgets.js";
+                fjs.parentNode.insertBefore(js, fjs);
+              }
+            }(document, "script", "twitter-wjs");
+    %ul.feed#twitter
+      %li
+        %span.date
+        %a(href="https://twitter.com/granze/status/")
+
+    %header.hgroup
+      %h2
+        Github
+      %h3
+        my Github activities
+        %a.more(target="_blank" href="https://github.com/Granze?tab=activity")
+          more
+
+    %ul.feed#github
+      -@github_feed.items.each do |item|
+        %li
+          %span.date=item.published
+          =item.title
+
+  .col-1-2
+    %header.hgroup
+      %h2
+        8a.nu
+      %h3
+        my climbing ascent
+        %a.more(target="_blank" href="http://s.shr.lc/1biC93J")
+          more
+    %ul.feed#ottoa
+      %li
+        %span.date
+        %strong.grade
+        %em.crag
+
+    %header.hgroup
+      %h2
+        Last.fm
+      %h3
+        what I'm listening to
+        %a.more(target="_blank" href="http://www.last.fm/user/granzebru/tracks")
+          more
+    %ul.feed#lastfm
+      -@lastfm_feed.items.each do |item|
+        %li
+          %a(href="=item.link")
+            =item.title
+
+
+
+

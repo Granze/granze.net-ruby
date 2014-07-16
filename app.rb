@@ -1,10 +1,8 @@
-require "sinatra"
-require "haml"
+require 'sinatra'
+require 'haml'
 
-get "/" do
-  haml :index
-end
+load 'home.rb'
 
-get "/about" do
+get '/about' do
   haml :about
 end
