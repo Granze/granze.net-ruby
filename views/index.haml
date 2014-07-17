@@ -36,10 +36,10 @@
           more
 
     %ul.feed#github
-      -@github_feed.items.each do |item|
+      -@github_feed.items.take(10).each do |item|
         %li
-          %span.date=item.published
-          =item.title
+          %span.date=time_ago_in_words(item.published.content) + ' ago'
+          =item.title.content
 
   .col-1-2
     %header.hgroup
@@ -50,10 +50,12 @@
         %a.more(target="_blank" href="http://s.shr.lc/1biC93J")
           more
     %ul.feed#ottoa
-      %li
-        %span.date
-        %strong.grade
-        %em.crag
+      -@ottoa.take(10).each do |item|
+        %li
+          %span.date=item[:date]
+          =item[:route]
+          %strong.grade=item[:grade]
+          %em.crag=item[:crag]
 
     %header.hgroup
       %h2
@@ -65,7 +67,7 @@
     %ul.feed#lastfm
       -@lastfm_feed.items.each do |item|
         %li
-          %a(href="=item.link")
+          %a(href="#{item.link}")
             =item.title
 
 
