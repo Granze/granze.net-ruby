@@ -23,9 +23,12 @@
               }
             }(document, "script", "twitter-wjs");
     %ul.feed#twitter
-      %li
-        %span.date
-        %a(href="https://twitter.com/granze/status/")
+      -@twitter_timeline.take(10).each do |tweet|
+        %li
+          %span.date=time_ago_in_words(tweet.created_at) + ' ago'
+          =tweet.text + ' | '
+          %a(href="#{tweet.uri}")
+            details
 
     %header.hgroup
       %h2

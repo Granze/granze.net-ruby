@@ -1,6 +1,14 @@
 require 'rss'
 require 'open-uri'
 require 'action_view'
+require 'twitter'
+
+client = Twitter::REST::Client.new do |config|
+  config.consumer_key    = ENV['consumer_key']
+  config.consumer_secret = ENV['consumer_secret']
+  config.access_token        = ENV['access_token']
+  config.access_token_secret = ENV['access_token_secret']
+end
 
 include ActionView::Helpers::DateHelper
 
@@ -32,6 +40,8 @@ get '/' do
       @ottoa.push({route: route, grade: grade, crag: crag, date: time_ago_in_words(item.pubDate) + ' ago'})
     end
   end
+
+  @twitter_timeline = client.user_timeline('granze')
 
   haml :index
 end
